@@ -9,6 +9,10 @@ Doorkeeper.configure do
     current_user || warden.authenticate!(:scope => :user)
   end
 
+  resource_owner_from_credentials do |routes|
+    User.authenticate!(params[:username], params[:password])
+  end
+
   # If you want to restrict the access to the web interface for
   # adding oauth authorized applications you need to declare the
   # block below
@@ -37,6 +41,7 @@ Doorkeeper.configure do
   # fallsback to `:client_id` and `:client_secret` from `params` object
   # Check out the wiki for mor information on customization
   # client_credentials :from_basic, :from_params
+  # client_credentials MyClientCredentials, :from_params
 
   orm :mongoid
 end

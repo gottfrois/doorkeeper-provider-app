@@ -39,4 +39,10 @@ class User
   # field :authentication_token, :type => String
 
   has_many :messages
+
+  def self.authenticate!(email, password)
+    user = User.where(email: email).first
+    return (user.valid_password?(password) ? user : nil) unless user.nil?
+    nil
+  end
 end

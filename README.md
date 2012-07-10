@@ -40,10 +40,8 @@ You are good to visit http://localhost:5100 and enjoy :)
 
 This app provide a very basic API. The current API endpoints are:
 
-    /api/v1/messages
-    /api/v1/user
-
-("v1" params is optional)
+    /api/messages
+    /api/user
 
 See the routes.rb file:
 
@@ -75,9 +73,11 @@ You can simulate a client using `curl`:
     -F client_id="your_application_id" \
     -F client_secret="your_secret"
 
-or using classic credentials:
+You can use user credentials to get the token without validations:
 
-    curl -i http://localhost:3000/oauth/token \
+    curl -i http://localhost:5100/oauth/token \
     -F grant_type="password" \
-    -F username="your_username" \
-    -F password="your_password"
+    -F username="a_user_email_address" \
+    -F password="a_user_password" \
+    -F client_id="your_application_id" \
+    -F client_secret="your_secret"
