@@ -8,6 +8,23 @@ Please see [Doorkeeper](https://github.com/applicake/doorkeeper/) for documentat
 I used Ryan Bates [railscast #353](http://railscasts.com/episodes/353-oauth-with-doorkeeper) to
 build this application. Some updates had been made to make it work with mongoid.
 
+## Getting started
+
+Just clone the repository and launch the `bundle` command:
+
+    git clone git://github.com/gottfrois/rails-sample-api.git
+    cd rails-sample-api
+    bundle
+
+Then start all services using [foreman](http://rubygems.org/gems/foreman)
+
+    foreman start
+
+or manually
+
+mongod run --config /usr/local/etc/mongod.conf
+bundle exec rails s
+
 ## Tips
 
 If you want to use this for a registering a mobile client for example, you might want
