@@ -27,9 +27,9 @@ bundle exec rails s
 
 ## Tips
 
-If you want to use this for a registering a mobile client for example, you might want
-to skip the "authorize application" process. This way you won't have to show
-the authorization to your user in a web browser. You will just get your token from
+If you want to use this for registering a mobile client for example, you might want
+to skip the "authorize application" process. This way you won't have to ask your client
+to authorize on the server with a web browser. You will just get your token from
 the api server.
 
 You can simulate a client using `curl`:
