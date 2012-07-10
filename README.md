@@ -57,7 +57,7 @@ All the controllers are under "app/controllers/api/v1/"
 
 ## Manage applications
 
-Run the server and go to `http://localhost:3000/oauth/applications`
+Run the server and go to `http://localhost:5100/oauth/applications`
 
 ## Tips
 
