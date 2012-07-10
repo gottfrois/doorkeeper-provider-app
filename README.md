@@ -1,6 +1,6 @@
-# Rails Sample Api
+# Doorkeeper Provider App
 
-Here you will find a rails api demo using [Doorkeeper](https://github.com/applicake/doorkeeper/)
+Here you will find a [Doorkeeper](https://github.com/applicake/doorkeeper/) Provder demo using [Devise](https://github.com/plataformatec/devise/)
 and [Mongoid 2.x.x](http://two.mongoid.org/).
 
 Please see [Doorkeeper](https://github.com/applicake/doorkeeper/) for documentation on doorkeeper.
@@ -12,8 +12,8 @@ build this application. Some updates had been made to make it work with mongoid.
 
 Just clone the repository and launch the `bundle` command:
 
-    git clone git://github.com/gottfrois/rails-sample-api.git
-    cd rails-sample-api
+    git clone git://github.com/gottfrois/doorkeeper-provider-app.git
+    cd doorkeeper-provider-app
     bundle
 
 Then start all services using [foreman](http://rubygems.org/gems/foreman)
