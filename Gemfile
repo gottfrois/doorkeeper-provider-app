@@ -2,7 +2,8 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.3'
 
-gem "mongoid", "~> 3.0.0"
+gem "mongoid", "~> 2.4"
+gem "bson_ext", "~> 1.5"
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
@@ -12,4 +13,4 @@ end
 
 gem 'jquery-rails'
 gem 'devise'
-gem 'doorkeeper', '~> 0.4.2'
+gem 'doorkeeper', :git => 'https://github.com/applicake/doorkeeper'
