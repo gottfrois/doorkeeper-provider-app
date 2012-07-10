@@ -22,8 +22,8 @@ Then start all services using [foreman](http://rubygems.org/gems/foreman)
 
 or manually
 
-mongod run --config /usr/local/etc/mongod.conf
-bundle exec rails s
+    mongod run --config /usr/local/etc/mongod.conf
+    bundle exec rails s
 
 ## Tips
 
