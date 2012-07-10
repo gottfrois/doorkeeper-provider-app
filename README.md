@@ -16,19 +16,25 @@ Just clone the repository and launch the `bundle` command:
     cd doorkeeper-provider-app
     bundle
 
-Then start all services using [foreman](http://rubygems.org/gems/foreman)
+Then start all services using [foreman](http://rubygems.org/gems/foreman):
 
     foreman start
 
-or manually
+If `foreman` is not installed yet, you can either start services manually or install foreman with:
+
+    gem install foreman
+
+or manually start services:
 
     mongod run --config /usr/local/etc/mongod.conf
-    bundle exec rails s
+    bundle exec rails s -p 5100
 
 Run the following rake command to seed the database:
 
     bundle exec rake db:drop
     bundle exec rake db:seed
+
+You are good to visit http://localhost:5100 and enjoy :)
 
 ## API
 
