@@ -81,3 +81,12 @@ You can use user credentials to get the token without validations:
     -F password="a_user_password" \
     -F client_id="your_application_id" \
     -F client_secret="your_secret"
+
+You can use `irb` console to test:
+
+    require "oauth2"
+    app_id = "your_app_id"
+    secret = "your_secret"
+    client = OAuth2::Client.new(app_id, secret, site: "http://localhost:5100")
+    access = OAuth2::AccessToken.from_hash(client, {"access_token" => "the_token_just_returned_from_the_previous_command","token_type" => "bearer","expires_in" => 7200})
+    access.get('/api/user').parsed
