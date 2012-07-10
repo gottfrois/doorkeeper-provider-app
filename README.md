@@ -1,7 +1,7 @@
 # Doorkeeper Provider App
 
 Here you will find a [Doorkeeper](https://github.com/applicake/doorkeeper/) Provder demo using [Devise](https://github.com/plataformatec/devise/)
-and [Mongoid 2.x.x](http://two.mongoid.org/).
+and [Mongoid 2.4.x](http://two.mongoid.org/).
 
 Please see [Doorkeeper](https://github.com/applicake/doorkeeper/) for documentation on doorkeeper.
 
