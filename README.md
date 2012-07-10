@@ -1,6 +1,6 @@
 # Rails Sample Api
 
-Here you will find a demo rails api using [Doorkeeper](https://github.com/applicake/doorkeeper/)
+Here you will find a rails api demo using [Doorkeeper](https://github.com/applicake/doorkeeper/)
 and [Mongoid 2.x.x](http://two.mongoid.org/).
 
 Please see [Doorkeeper](https://github.com/applicake/doorkeeper/) for documentation on doorkeeper.
