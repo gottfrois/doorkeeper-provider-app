@@ -25,6 +25,36 @@ or manually
     mongod run --config /usr/local/etc/mongod.conf
     bundle exec rails s
 
+Run the following rake command to seed the database:
+
+    bundle exec rake db:drop
+    bundle exec rake db:seed
+
+## API
+
+This app provide a very basic API. The current API endpoints are:
+
+    /api/v1/messages
+    /api/v1/user
+
+("v1" params is optional)
+
+See the routes.rb file:
+
+    require 'api_constraints'
+    namespace :api, defaults: {format: 'json'} do
+        scope module: :v1, constraints: ApiConstraints.new(version: 1, default: true) do
+            resources :messages, only: [:index, :create]
+            match 'user', to: 'users#show'
+        end
+    end
+
+All the controllers are under "app/controllers/api/v1/"
+
+## Manage applications
+
+Run the server and go to `http://localhost:3000/oauth/applications`
+
 ## Tips
 
 If you want to use this for registering a mobile client for example, you might want
