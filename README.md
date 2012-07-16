@@ -34,6 +34,11 @@ Run the following rake command to seed the database:
     bundle exec rake db:drop
     bundle exec rake db:seed
 
+This will create two users you can use to play with the application:
+
+    email: "john.smith@myapp.com", password: "please"
+    email: "lee.do@myappcom", password: "please"
+
 You are good to visit http://localhost:5100 and enjoy :)
 
 ## API
