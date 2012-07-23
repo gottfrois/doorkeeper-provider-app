@@ -9,8 +9,8 @@ Api::Application.routes.draw do
 
   namespace :api, defaults: {format: 'json'} do
     scope module: :v1, constraints: ApiConstraints.new(version: 1, default: true) do
-      resources :messages, only: [:index, :create]
-      match 'user', to: 'users#show'
+      match 'conversations', to: 'conversations#index'
+      match 'users/me', to: 'users#me'
     end
   end
 end
