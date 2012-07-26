@@ -6,4 +6,8 @@ class Api::V1::ConversationsController < Api::V1::BaseController
   def index
     render :partial => 'conversations/index.json'
   end
+
+  def show
+    render :partial => 'conversations/show.json'
+  end
 end
