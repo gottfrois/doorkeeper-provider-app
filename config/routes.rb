@@ -11,7 +11,7 @@ Api::Application.routes.draw do
     scope module: :v1, constraints: ApiConstraints.new(version: 1, default: true) do
       match 'conversations',      to: 'conversations#index'
       match 'conversations/:id',  to: 'conversations#show'
-      match 'messages/:id',       to: 'messages#show'
+      match 'conversations/:conversation_id/messages/:id',       to: 'messages#show'
       match 'tasks',              to: 'tasks#index'
       match 'users/me',           to: 'users#me'
     end
