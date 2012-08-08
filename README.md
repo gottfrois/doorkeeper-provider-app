@@ -45,8 +45,12 @@ You are good to visit http://localhost:5100 and enjoy :)
 
 This app provide a very basic API. For now, the API is READ only. The current API endpoints are:
 
-    /api/messages
-    /api/user
+    /api/conversations
+    /api/conversations/:id
+    /api/conversations/:conversation_id/messages
+    /api/conversations/:conversation_id/messages/:id
+    /api/users
+    /api/users/me
 
 See the routes.rb file:
 
