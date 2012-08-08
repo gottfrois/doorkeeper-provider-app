@@ -43,7 +43,7 @@ You are good to visit http://localhost:5100 and enjoy :)
 
 ## API
 
-This app provide a very basic API. The current API endpoints are:
+This app provide a very basic API. For now, the API is READ only. The current API endpoints are:
 
     /api/messages
     /api/user
@@ -52,11 +52,17 @@ See the routes.rb file:
 
     require 'api_constraints'
     namespace :api, defaults: {format: 'json'} do
-        scope module: :v1, constraints: ApiConstraints.new(version: 1, default: true) do
-            resources :messages, only: [:index, :create]
-            match 'user', to: 'users#show'
-        end
+    scope module: :v1, constraints: ApiConstraints.new(version: 1, default: true) do
+
+      resources :conversations, only: [:index, :show] do
+        resources :messages, only: [:index, :show]
+      end
+
+      resources :users, only: [:index, :me] do
+        get 'me', on: :collection
+      end
     end
+  end
 
 All the controllers are under "app/controllers/api/v1/"
 
@@ -73,7 +79,7 @@ the api server.
 
 You can simulate a client using `curl`:
 
-    curl -i http://localhost:3000/oauth/token \
+    curl -i http://localhost:5100/oauth/token \
     -F grant_type="client_credentials" \
     -F client_id="your_application_id" \
     -F client_secret="your_secret"
@@ -94,4 +100,9 @@ You can use `irb` console to test:
     secret = "your_secret"
     client = OAuth2::Client.new(app_id, secret, site: "http://localhost:5100")
     access = OAuth2::AccessToken.from_hash(client, {"access_token" => "the_token_just_returned_from_the_previous_command","token_type" => "bearer","expires_in" => 7200})
-    access.get('/api/user').parsed
+    access.get('/api/users').parsed
+    access.get('/api/users/me').parsed
+    access.get('/api/conversations').parsed
+    access.get('/api/conversations/some_id/').parsed
+    access.get('/api/conversations/some_id/messages').parsed
+
