@@ -1,6 +1,6 @@
 GIT
-  remote: git://github.com/gottfrois/doorkeeper.git
-  revision: 6c48af191ca4108dc4d0da20cbb443d11ec436ca
+  remote: https://github.com/applicake/doorkeeper
+  revision: 51c09778f9c4d51aa84daf4b71e4d46a7fa7b7bf
   specs:
     doorkeeper (0.5.0.dev)
       railties (~> 3.1)
@@ -62,7 +62,7 @@ GEM
     jquery-rails (2.0.2)
       railties (>= 3.2.0, < 5.0)
       thor (~> 0.14)
-    json (1.7.3)
+    json (1.7.4)
     mail (2.4.4)
       i18n (>= 0.4.0)
       mime-types (~> 1.16)

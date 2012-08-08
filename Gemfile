@@ -13,4 +13,4 @@ end
 
 gem 'jquery-rails'
 gem 'devise'
-gem 'doorkeeper', :git => 'git://github.com/gottfrois/doorkeeper.git'
+gem 'doorkeeper', :git => 'https://github.com/applicake/doorkeeper'
