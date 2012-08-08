@@ -6,6 +6,8 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+Rake::Task["db:drop"].invoke
+
 # Users
 u1 = User.create(email: "john.smith@myapp.com", password: "please")
 puts "User #{u1.email} created."

@@ -10,4 +10,9 @@ class Api::V1::ConversationsController < Api::V1::BaseController
   def show
     respond_with @conversation = current_user.conversations.find(params[:id])
   end
+
+  def create
+    @conversation = current_user.conversations.create!(params[:conversation])
+    respond_with @conversation, location: nil
+  end
 end

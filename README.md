@@ -5,6 +5,8 @@ and [Mongoid 2.4.x](http://two.mongoid.org/).
 
 Please see [Doorkeeper](https://github.com/applicake/doorkeeper/) for documentation on doorkeeper.
 
+Please see [OAuth2](https://github.com/intridea/oauth2/) for documentation on OAuth2 and to understand the requests calls below.
+
 I used Ryan Bates [railscast #353](http://railscasts.com/episodes/353-oauth-with-doorkeeper) to
 build this application. Some updates had been made to make it work with mongoid.
 
@@ -31,7 +33,6 @@ or manually start services:
 
 Run the following rake command to seed the database:
 
-    bundle exec rake db:drop
     bundle exec rake db:seed
 
 This will create two users you can use to play with the application:
@@ -43,36 +44,28 @@ You are good to visit http://localhost:5100 and enjoy :)
 
 ## API
 
-This app provide a very basic API. For now, the API is READ only. The current API endpoints are:
+This app provide basic API calls. The current API endpoints are:
 
-    /api/conversations
-    /api/conversations/:id
-    /api/conversations/:conversation_id/messages
-    /api/conversations/:conversation_id/messages/:id
-    /api/users
-    /api/users/me
+    GET /api/conversations
+    GET /api/conversations/:id
+    GET /api/conversations/:conversation_id/messages
+    GET /api/conversations/:conversation_id/messages/:id
+    GET /api/users
+    GET /api/users/me
+    POST /api/users
+    POST /api/conversations
+    PUT /api/conversations/:conversation_id/messages/:id
+    DELETE /api/conversations/:conversation_id/messages/:id
 
-See the routes.rb file:
+See routes file for more details.
 
-    require 'api_constraints'
-    namespace :api, defaults: {format: 'json'} do
-    scope module: :v1, constraints: ApiConstraints.new(version: 1, default: true) do
+All API controllers are under "app/controllers/api/v1/". Just create a new folder (namespace) to build a new API version.
 
-      resources :conversations, only: [:index, :show] do
-        resources :messages, only: [:index, :show]
-      end
-
-      resources :users, only: [:index, :me] do
-        get 'me', on: :collection
-      end
-    end
-  end
-
-All the controllers are under "app/controllers/api/v1/"
+See below how to make api call in rails console.
 
 ## Manage applications
 
-Run the server and go to `http://localhost:5100/oauth/applications`
+Run the server and go to `http://localhost:5100/oauth/applications` to see and manage authorized applications.
 
 ## Tips
 
@@ -99,14 +92,47 @@ You can use user credentials to get the token without validations:
 
 You can use `irb` console to test:
 
-    require "oauth2"
+	irb -r oauth2
+
+Then in the console:
+
     app_id = "your_app_id"
     secret = "your_secret"
     client = OAuth2::Client.new(app_id, secret, site: "http://localhost:5100")
-    access = OAuth2::AccessToken.from_hash(client, {"access_token" => "the_token_just_returned_from_the_previous_command","token_type" => "bearer","expires_in" => 7200})
+    access = OAuth2::AccessToken.from_hash(client, {"access_token" => "the_token_returned_from_curl_command","token_type" => "bearer","expires_in" => 7200})
+    
     access.get('/api/users').parsed
     access.get('/api/users/me').parsed
     access.get('/api/conversations').parsed
     access.get('/api/conversations/some_id/').parsed
     access.get('/api/conversations/some_id/messages').parsed
+    
+    access.post('/api/users', body: {user: {email: 'foo@bar.com', password: 'please'}}).parsed
+    access.post('/api/conversations', body: {conversation: {messages_attributes: [{body: 'foo'}]}}).parsed
+    
+    access.put('/api/conversations/5022caba1de760379b000003/messages/5022caba1de760379b000004', body: {message: {body: 'new content'}}).parsed
+    
+    access.delete('/api/conversations/5022caba1de760379b000003/messages/5022caba1de760379b000004').parsed
 
+Note: When making the POST request on `/api/users`, you'll probable want to do it without a token you've got from curl passing some user's credentials. In another word, my example is made such that you can create a new user from an API call passing a valid token, but a token acquired without some user's credentials. Like the curl command we saw previously:
+
+	curl -i http://localhost:5100/oauth/token \
+    -F grant_type="client_credentials" \
+    -F client_id="your_application_id" \
+    -F client_secret="your_secret"
+    
+Then you could get a brand new token (and use this one for further requests if you want change the "current_user" context to your new user) acquired this time with your new user's credentials.
+
+### Note on CORS (Cross Origin Resource Sharing)
+
+You've probably notice that I'm setting some original headers in `/controllers/api/v1/base_controller.rb`:
+
+	response.headers['Access-Control-Allow-Origin'] = '*'
+    response.headers['Access-Control-Allow-Methods'] = 'POST, PUT, DELETE, GET, OPTIONS'
+    response.headers['Access-Control-Max-Age'] = "1728000"
+    
+This will anable any requests from any origins (*) with the following methods `'POST, PUT, DELETE, GET, OPTIONS'`.
+
+Adding these headers in a controller does the trick, but for production's environment (or for clean controllers), you might want to use a rack middleware like [rack-cors](https://github.com/cyu/rack-cors).
+
+That's it for now !

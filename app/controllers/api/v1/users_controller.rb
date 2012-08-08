@@ -10,4 +10,9 @@ class Api::V1::UsersController < Api::V1::BaseController
   def index
     respond_with @users = User.all
   end
+
+  def create
+    @user = User.create!(params[:user])
+    respond_with @user, location: nil
+  end
 end
