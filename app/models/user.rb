@@ -39,7 +39,7 @@ class User
   ## Token authenticatable
   # field :authentication_token,          :type => String
 
-  has_many :messages
+  has_many :conversations
 
   def self.authenticate!(email, password)
     user = User.where(email: email).first

@@ -4,10 +4,10 @@ class Api::V1::ConversationsController < Api::V1::BaseController
   respond_to :json
 
   def index
-    render :partial => 'conversations/index.json'
+    respond_with @conversations = current_user.conversations
   end
 
   def show
-    render :partial => 'conversations/show.json'
+    respond_with @conversation = current_user.conversations.find(params[:id])
   end
 end
