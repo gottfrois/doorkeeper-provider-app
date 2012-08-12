@@ -114,6 +114,7 @@ Then in the console:
     
     access.delete('/api/conversations/5022caba1de760379b000003/messages/5022caba1de760379b000004').parsed
 
+
 Note: When making the POST request on `/api/users`, you'll probable want to do it without a token you've got from curl passing some user's credentials. In another word, my example is made such that you can create a new user from an API call passing a valid token, but a token acquired without some user's credentials. Like the curl command we saw previously:
 
 	curl -i http://localhost:5100/oauth/token \
