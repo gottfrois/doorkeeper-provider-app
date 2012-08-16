@@ -126,14 +126,8 @@ Then you could get a brand new token (and use this one for further requests if y
 
 ### Note on CORS (Cross Origin Resource Sharing)
 
-You've probably notice that I'm setting some original headers in `/controllers/api/v1/base_controller.rb`:
+You might be cronfronted to some issues while requesting for an other domain (from a mobile application for example).
 
-	response.headers['Access-Control-Allow-Origin'] = '*'
-    response.headers['Access-Control-Allow-Methods'] = 'POST, PUT, DELETE, GET, OPTIONS'
-    response.headers['Access-Control-Max-Age'] = "1728000"
-    
-This will anable any requests from any origins (*) with the following methods `'POST, PUT, DELETE, GET, OPTIONS'`.
-
-Adding these headers in a controller does the trick, but for production's environment (or for clean controllers), you might want to use a rack middleware like [rack-cors](https://github.com/cyu/rack-cors).
+For this demo application, I have used [rack-cors](https://github.com/cyu/rack-cors) middleware in order to set HTTP headers to allow [CORS](http://www.nczonline.net/blog/2010/05/25/cross-domain-ajax-with-cross-origin-resource-sharing/).
 
 That's it for now !
