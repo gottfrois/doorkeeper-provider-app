@@ -14,3 +14,4 @@ end
 gem 'jquery-rails'
 gem 'devise'
 gem 'doorkeeper', :git => 'https://github.com/applicake/doorkeeper'
+gem 'rack-cors', :require => 'rack/cors'
