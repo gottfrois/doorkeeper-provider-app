@@ -43,5 +43,5 @@ Doorkeeper.configure do
   # client_credentials :from_basic, :from_params
   # client_credentials MyClientCredentials, :from_params
 
-  orm :mongoid
+  orm :mongoid3
 end
