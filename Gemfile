@@ -12,5 +12,5 @@ end
 
 gem 'jquery-rails'
 gem 'devise'
-gem 'doorkeeper', '~> 0.6.7'
+gem 'doorkeeper', '~> 3.1.0'
 gem 'rack-cors', :require => 'rack/cors'
